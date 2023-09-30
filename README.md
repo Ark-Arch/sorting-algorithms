@@ -14,3 +14,5 @@ TASK 1
 	- median of the array elements
 	- the mode of the array elements
 - WRITE A GUI application accomodating the above instructions.
+-*also consider unit testing
+
