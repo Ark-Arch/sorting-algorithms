@@ -17,6 +17,13 @@ int main (void)
 	printf(">> ");
 	scanf("%d", &array_size);
 
+	printf("\n\n Please input %d numbers >>  ", array_size);
+	int          array[array_size];
+	for (i = 0; i < array_size; ++i) {
+		scanf("%d", &array[i]);
+		sum += array[i];		
+	}
+
 
 	return 0;
 }
