@@ -2,16 +2,21 @@
 
 #include <stdio.h>
 
-#define ARRAY_SIZE
-
 void prn_instructions(void);
 
 int main (void) 
 {
-	int    i, j, mode, tmp, sum = 0;
-	float  mean, median;
+	int           i, j, mode, tmp, sum = 0;
+	float         mean, median;
+	int           array_size;
 
 	prn_instructions();
+
+	// ASK FOR THE NUMBER OF ARRAY ELEMENTS INTENDED FOR SORTING
+	printf("\n Please determine what count of numbers you intend to input: \n");
+	printf(">> ");
+	scanf("%d", &array_size);
+
 
 	return 0;
 }
