@@ -6,6 +6,7 @@
 void prn_instructions(void);
 int *  ascend_sort(int params[], int size);
 int *  descend_sort(int params[], int size);
+void   results(int params[], int size);
 
 int main (void) 
 {
@@ -26,8 +27,7 @@ int main (void)
 	printf("\n\n Please input %d numbers >>  ", array_size);
 	int          array[array_size];
 	for (int i = 0; i < array_size; ++i) {
-		scanf("%d", &array[i]);
-		sum += array[i];		
+		scanf("%d", &array[i]);		
 	}
 
 	// CONFIRM IN WHAT ORDER IT IS NEEDED TO BE SORTED
@@ -46,10 +46,9 @@ int main (void)
 		printf("\nSorry you have not provided with an available choice.\n");
 		exit(1);
 		}
-		
-	
-	
-		
+
+	results(sorted_array, array_size);	
+
 	return 0;
 }
 
@@ -65,8 +64,8 @@ int * ascend_sort(int params[], int size){
 	int i, j, tmp;
 	
 	for (i=0; i<size; ++i)
-		for(j = 0; j < i; ++j)
-			if (params[j-1] < params[j]){
+		for(j = 1; j < size - i; ++j)
+			if (params[j-1] > params[j]){
 				tmp = params[j-1];
 				params[j-1] = params[j];
 				params[j] = tmp;
@@ -88,3 +87,27 @@ int * descend_sort(int params[], int size){
 
 	return params;	
 }
+
+void results(int params[], int size){
+	int   sum = 0, mode, median;
+	float mean;
+	
+	printf("\nThis are the numbers in the requested sort >> \n");
+	for (int i = 0; i< size; ++i){
+		printf("%d ",params[i]);
+		sum += params[i];}
+
+	mean = (double) sum/ size;
+	printf("\nThis is the average of the scores >> %f\n", mean);
+
+	if (size % 2 == 0) {
+		median = (size/2);
+		printf("The median number of the array is >> %d\n", (params[median-1] + params[median])/2);
+	}
+	else{
+		median = (size/2);
+		printf("The median number of the array is >> %d\n", params[median]);
+	}
+}
+
+
