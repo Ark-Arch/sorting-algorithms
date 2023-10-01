@@ -63,13 +63,17 @@ void prn_instructions(void){
 int * ascend_sort(int params[], int size){
 	int i, j, tmp;
 	
-	for (i=0; i<size; ++i)
-		for(j = 1; j < size - i; ++j)
-			if (params[j-1] > params[j]){
-				tmp = params[j-1];
-				params[j-1] = params[j];
-				params[j] = tmp;
+	for (i=0; i < size - 1; i++){
+		for(j = 0; j < size - i - 1; j++){
+			if (params[j] > params[j+1]){
+				tmp = params[j];
+				params[j] = params[j+1];
+				params[j+1] = tmp;
 			}
+		}
+	}
+	
+	return params;
 }
 
 int * descend_sort(int params[], int size){
