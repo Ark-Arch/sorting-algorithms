@@ -1,15 +1,19 @@
 /* Expecting that the array elements are integer values */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 void prn_instructions(void);
+int *  ascend_sort(int params[], int size);
+int *  descend_sort(int params[], int size);
 
 int main (void) 
 {
-	int           i, j, mode, tmp, sum = 0;
+	int           mode, sum = 0;
 	float         mean, median;
 	int           array_size;
 	char          order;
+	int           *sorted_array;
 
 	prn_instructions();
 
@@ -21,7 +25,7 @@ int main (void)
 	// ASK FOR THE ARRAY ELEMENTS
 	printf("\n\n Please input %d numbers >>  ", array_size);
 	int          array[array_size];
-	for (i = 0; i < array_size; ++i) {
+	for (int i = 0; i < array_size; ++i) {
 		scanf("%d", &array[i]);
 		sum += array[i];		
 	}
@@ -32,13 +36,20 @@ int main (void)
 
 	if (order == 'a') {
 		printf("\nYou have chosen the ascending order.");
-		//sort_acending(array); //A FUNCTION THAT SORTS IN ASCENDING
+		sorted_array = ascend_sort(array, array_size);
 		}
 	else if (order == 'd') {
 		printf("\nYou have chosen the descending order.");
-		//sort_descending(array); //A FUNCTION THAT SORTS IN DESCENDING
+		sorted_array = descend_sort(array, array_size);
 		}
-			
+	else {
+		printf("\nSorry you have not provided with an available choice.\n");
+		exit(1);
+		}
+		
+	
+	
+		
 	return 0;
 }
 
@@ -49,3 +60,31 @@ void prn_instructions(void){
 	printf("\n3. please ensure that the size of array is a positive integer number\n\n");
 }
 
+
+int * ascend_sort(int params[], int size){
+	int i, j, tmp;
+	
+	for (i=0; i<size; ++i)
+		for(j = 0; j < i; ++j)
+			if (params[j-1] < params[j]){
+				tmp = params[j-1];
+				params[j-1] = params[j];
+				params[j] = tmp;
+			}
+}
+
+int * descend_sort(int params[], int size){
+	int i, j, tmp;
+
+	for (i=0; i<size; ++i){
+		for(j = size - 1; j > i; --j){
+		       if (params[j-1] < params[j]) {
+		       		tmp = params[j-1];
+				params[j-1] = params[j];
+				params[j] = tmp;
+		       }
+		}
+	}
+
+	return params;	
+}
